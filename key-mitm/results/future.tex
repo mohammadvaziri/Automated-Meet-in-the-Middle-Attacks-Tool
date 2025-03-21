@@ -1,0 +1,254 @@
+%=============================
+
+
+\documentclass{standalone}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{xcolor}
+%\usepackage{../style/aes}
+\usepackage{../simplifiedpresent}
+\colorlet{darkgreen}{green!50!black} \colorlet{darkblue}{blue!50!black}
+\colorlet{darkred}{red!50!black} \colorlet{darkorange}{orange!70!black}
+%Generic time complexity:  128 
+%Max list size:  34.0 
+%Memory complexity:  33.999999999999986 
+%Time complexity:  126.0 
+%Fixed state nibbles (global_reduction):  64.0 
+%Repetitions:  92.0 
+%Global reduction of cells: 
+%$c^{1}_{0}$ : 16.0
+%$c^{1}_{2}$ : 16.0
+%$c^{1}_{3}$ : 16.0
+%$c^{2}_{0}$ : 4.0
+%$c^{2}_{1}$ : 4.0
+%$c^{2}_{2}$ : 4.0
+%$c^{2}_{3}$ : 4.0
+%======= Number of key nibbles:
+%forward : 14.0
+%backward : 22.0
+%shared : 92.0
+%merged : 36.0
+%======= List sizes:
+%forward : 34.0
+%backward : 34.0
+%merged : 34.0
+%======= Key nibbles:
+%forward ['$k^{1}_{13}$', '$k^{1}_{14}$', '$k^{1}_{15}$', '$k^{1}_{32}$', '$k^{1}_{33}$', '$k^{1}_{34}$', '$k^{1}_{35}$', '$k^{1}_{36}$', '$k^{1}_{37}$', '$k^{1}_{38}$', '$k^{1}_{39}$', '$k^{1}_{57}$', '$k^{1}_{58}$', '$k^{1}_{59}$'] 14
+%backward ['$k^{0}_{17}$', '$k^{0}_{18}$', '$k^{0}_{19}$', '$k^{0}_{20}$', '$k^{0}_{21}$', '$k^{0}_{22}$', '$k^{0}_{23}$', '$k^{0}_{24}$', '$k^{1}_{9}$', '$k^{1}_{10}$', '$k^{1}_{11}$', '$k^{1}_{12}$', '$k^{1}_{30}$', '$k^{1}_{31}$', '$k^{1}_{49}$', '$k^{1}_{50}$', '$k^{1}_{51}$', '$k^{1}_{52}$', '$k^{1}_{53}$', '$k^{1}_{54}$', '$k^{1}_{55}$', '$k^{1}_{56}$'] 22
+%shared ['$k^{0}_{0}$', '$k^{0}_{1}$', '$k^{0}_{2}$', '$k^{0}_{3}$', '$k^{0}_{4}$', '$k^{0}_{5}$', '$k^{0}_{6}$', '$k^{0}_{7}$', '$k^{0}_{8}$', '$k^{0}_{9}$', '$k^{0}_{10}$', '$k^{0}_{11}$', '$k^{0}_{12}$', '$k^{0}_{13}$', '$k^{0}_{14}$', '$k^{0}_{15}$', '$k^{0}_{16}$', '$k^{0}_{25}$', '$k^{0}_{26}$', '$k^{0}_{27}$', '$k^{0}_{28}$', '$k^{0}_{29}$', '$k^{0}_{30}$', '$k^{0}_{31}$', '$k^{0}_{32}$', '$k^{0}_{33}$', '$k^{0}_{34}$', '$k^{0}_{35}$', '$k^{0}_{36}$', '$k^{0}_{37}$', '$k^{0}_{38}$', '$k^{0}_{39}$', '$k^{0}_{40}$', '$k^{0}_{41}$', '$k^{0}_{42}$', '$k^{0}_{43}$', '$k^{0}_{44}$', '$k^{0}_{45}$', '$k^{0}_{46}$', '$k^{0}_{47}$', '$k^{0}_{48}$', '$k^{0}_{49}$', '$k^{0}_{50}$', '$k^{0}_{51}$', '$k^{0}_{52}$', '$k^{0}_{53}$', '$k^{0}_{54}$', '$k^{0}_{55}$', '$k^{0}_{56}$', '$k^{0}_{57}$', '$k^{0}_{58}$', '$k^{0}_{59}$', '$k^{0}_{60}$', '$k^{0}_{61}$', '$k^{0}_{62}$', '$k^{0}_{63}$', '$k^{1}_{0}$', '$k^{1}_{1}$', '$k^{1}_{2}$', '$k^{1}_{3}$', '$k^{1}_{4}$', '$k^{1}_{5}$', '$k^{1}_{6}$', '$k^{1}_{7}$', '$k^{1}_{8}$', '$k^{1}_{16}$', '$k^{1}_{17}$', '$k^{1}_{18}$', '$k^{1}_{19}$', '$k^{1}_{20}$', '$k^{1}_{21}$', '$k^{1}_{22}$', '$k^{1}_{23}$', '$k^{1}_{24}$', '$k^{1}_{25}$', '$k^{1}_{26}$', '$k^{1}_{27}$', '$k^{1}_{28}$', '$k^{1}_{29}$', '$k^{1}_{40}$', '$k^{1}_{41}$', '$k^{1}_{42}$', '$k^{1}_{43}$', '$k^{1}_{44}$', '$k^{1}_{45}$', '$k^{1}_{46}$', '$k^{1}_{47}$', '$k^{1}_{48}$', '$k^{1}_{60}$', '$k^{1}_{61}$', '$k^{1}_{62}$', '$k^{1}_{63}$'] 92
+%============= Key cells:
+%============= key cells colored:
+%forward []
+%backward []
+%shared []
+%============= Covered cells:
+%forward ['$c^{1}_{0}$', '$c^{1}_{2}$', '$c^{1}_{3}$', '$c^{2}_{0}$', '$c^{2}_{1}$', '$c^{2}_{2}$', '$c^{3}_{0}$', '$c^{3}_{1}$', '$c^{3}_{2}$', '$c^{3}_{3}$', '$c^{4}_{1}$', '$c^{4}_{2}$', '$c^{4}_{3}$', '$c^{5}_{0}$', '$c^{5}_{1}$']
+%backward ['$c^{0}_{0}$', '$c^{0}_{1}$', '$c^{0}_{2}$', '$c^{0}_{3}$', '$c^{1}_{1}$', '$c^{7}_{0}$', '$c^{7}_{1}$', '$c^{7}_{2}$', '$c^{8}_{0}$', '$c^{8}_{2}$', '$c^{8}_{3}$', '$c^{9}_{0}$', '$c^{9}_{1}$', '$c^{9}_{2}$', '$c^{9}_{3}$', '$c^{9}_{4}$', '$c^{9}_{5}$', '$c^{9}_{6}$', '$c^{9}_{7}$', '$c^{9}_{8}$', '$c^{9}_{9}$', '$c^{9}_{10}$', '$c^{9}_{11}$', '$c^{9}_{12}$', '$c^{9}_{13}$', '$c^{9}_{14}$', '$c^{9}_{15}$', '$c^{10}_{0}$']
+%new_merged ['$c^{2}_{3}$', '$c^{6}_{1}$', '$c^{6}_{2}$', '$c^{6}_{3}$', '$c^{8}_{1}$']
+
+\begin{document}
+
+\begin{figpresent}[yscale=1., xscale=0.5]
+\def\rdheight{20}
+\def\bitwidth{4}
+\def\cellstart{0.15}
+\def\outedgestart{0.45}
+\def\swapstart{0.55}
+\def\nextcellsep{0.15}
+\def\edgeshift{6}
+\figcell[bwd]{0}{16}{$c^{0}_{0}$}
+\figedge[guess]{0}{0}\figedge[bwd]{4}{20}\figedge[guess]{8}{40}\figedge[guess]{12}{60}
+\keyaddabove[shared]{0}{$k^{0}_{0}$}\keyaddabove[shared]{1}{$k^{0}_{1}$}\keyaddabove[shared]{2}{$k^{0}_{2}$}\keyaddabove[shared]{3}{$k^{0}_{3}$}\keyaddabove[shared]{4}{$k^{0}_{4}$}\keyaddabove[shared]{5}{$k^{0}_{5}$}\keyaddabove[shared]{6}{$k^{0}_{6}$}\keyaddabove[shared]{7}{$k^{0}_{7}$}\keyaddabove[shared]{8}{$k^{0}_{8}$}\keyaddabove[shared]{9}{$k^{0}_{9}$}\keyaddabove[shared]{10}{$k^{0}_{10}$}\keyaddabove[shared]{11}{$k^{0}_{11}$}\keyaddabove[shared]{12}{$k^{0}_{12}$}\keyaddabove[shared]{13}{$k^{0}_{13}$}\keyaddabove[shared]{14}{$k^{0}_{14}$}\keyaddabove[shared]{15}{$k^{0}_{15}$}
+\figcell[bwd]{16}{16}{$c^{0}_{1}$}
+\figedge[bwd]{16}{16}\figedge[guess]{20}{36}\figedge[guess]{24}{56}\figedge[guess]{28}{12}
+\keyaddabove[shared]{16}{$k^{0}_{16}$}\keyaddabove[bwd]{17}{$k^{0}_{17}$}\keyaddabove[bwd]{18}{$k^{0}_{18}$}\keyaddabove[bwd]{19}{$k^{0}_{19}$}\keyaddabove[bwd]{20}{$k^{0}_{20}$}\keyaddabove[bwd]{21}{$k^{0}_{21}$}\keyaddabove[bwd]{22}{$k^{0}_{22}$}\keyaddabove[bwd]{23}{$k^{0}_{23}$}\keyaddabove[bwd]{24}{$k^{0}_{24}$}\keyaddabove[shared]{25}{$k^{0}_{25}$}\keyaddabove[shared]{26}{$k^{0}_{26}$}\keyaddabove[shared]{27}{$k^{0}_{27}$}\keyaddabove[shared]{28}{$k^{0}_{28}$}\keyaddabove[shared]{29}{$k^{0}_{29}$}\keyaddabove[shared]{30}{$k^{0}_{30}$}\keyaddabove[shared]{31}{$k^{0}_{31}$}
+\figcell[bwd]{32}{16}{$c^{0}_{2}$}
+\figedge[guess]{32}{32}\figedge[guess]{36}{52}\figedge[guess]{40}{8}\figedge[bwd]{44}{28}
+\keyaddabove[shared]{32}{$k^{0}_{32}$}\keyaddabove[shared]{33}{$k^{0}_{33}$}\keyaddabove[shared]{34}{$k^{0}_{34}$}\keyaddabove[shared]{35}{$k^{0}_{35}$}\keyaddabove[shared]{36}{$k^{0}_{36}$}\keyaddabove[shared]{37}{$k^{0}_{37}$}\keyaddabove[shared]{38}{$k^{0}_{38}$}\keyaddabove[shared]{39}{$k^{0}_{39}$}\keyaddabove[shared]{40}{$k^{0}_{40}$}\keyaddabove[shared]{41}{$k^{0}_{41}$}\keyaddabove[shared]{42}{$k^{0}_{42}$}\keyaddabove[shared]{43}{$k^{0}_{43}$}\keyaddabove[shared]{44}{$k^{0}_{44}$}\keyaddabove[shared]{45}{$k^{0}_{45}$}\keyaddabove[shared]{46}{$k^{0}_{46}$}\keyaddabove[shared]{47}{$k^{0}_{47}$}
+\figcell[bwd]{48}{16}{$c^{0}_{3}$}
+\figedge[guess]{48}{48}\figedge[guess]{52}{4}\figedge[bwd]{56}{24}\figedge[guess]{60}{44}
+\keyaddabove[shared]{48}{$k^{0}_{48}$}\keyaddabove[shared]{49}{$k^{0}_{49}$}\keyaddabove[shared]{50}{$k^{0}_{50}$}\keyaddabove[shared]{51}{$k^{0}_{51}$}\keyaddabove[shared]{52}{$k^{0}_{52}$}\keyaddabove[shared]{53}{$k^{0}_{53}$}\keyaddabove[shared]{54}{$k^{0}_{54}$}\keyaddabove[shared]{55}{$k^{0}_{55}$}\keyaddabove[shared]{56}{$k^{0}_{56}$}\keyaddabove[shared]{57}{$k^{0}_{57}$}\keyaddabove[shared]{58}{$k^{0}_{58}$}\keyaddabove[shared]{59}{$k^{0}_{59}$}\keyaddabove[shared]{60}{$k^{0}_{60}$}\keyaddabove[shared]{61}{$k^{0}_{61}$}\keyaddabove[shared]{62}{$k^{0}_{62}$}\keyaddabove[shared]{63}{$k^{0}_{63}$}
+\roundlabel{$R_{0}$}
+\newround
+%
+\figcell[fwd]{0}{16}{$c^{1}_{0}$}
+\figedge[fwd]{0}{0}\figedge[fwd]{4}{20}\figedge[fwd]{8}{40}\figedge[fwd]{12}{60}
+\keyaddabove[shared]{0}{$k^{1}_{0}$}\keyaddabove[shared]{1}{$k^{1}_{1}$}\keyaddabove[shared]{2}{$k^{1}_{2}$}\keyaddabove[shared]{3}{$k^{1}_{3}$}\keyaddabove[shared]{4}{$k^{1}_{4}$}\keyaddabove[shared]{5}{$k^{1}_{5}$}\keyaddabove[shared]{6}{$k^{1}_{6}$}\keyaddabove[shared]{7}{$k^{1}_{7}$}\keyaddabove[shared]{8}{$k^{1}_{8}$}\keyaddabove[bwd]{9}{$k^{1}_{9}$}\keyaddabove[bwd]{10}{$k^{1}_{10}$}\keyaddabove[bwd]{11}{$k^{1}_{11}$}\keyaddabove[bwd]{12}{$k^{1}_{12}$}\keyaddabove[fwd]{13}{$k^{1}_{13}$}\keyaddabove[fwd]{14}{$k^{1}_{14}$}\keyaddabove[fwd]{15}{$k^{1}_{15}$}
+\figcell[bwd]{16}{16}{$c^{1}_{1}$}
+\figedge[guess]{16}{16}\figedge[guess]{20}{36}\figedge[bwd]{24}{56}\figedge[guess]{28}{12}
+\keyaddabove[shared]{16}{$k^{1}_{16}$}\keyaddabove[shared]{17}{$k^{1}_{17}$}\keyaddabove[shared]{18}{$k^{1}_{18}$}\keyaddabove[shared]{19}{$k^{1}_{19}$}\keyaddabove[shared]{20}{$k^{1}_{20}$}\keyaddabove[shared]{21}{$k^{1}_{21}$}\keyaddabove[shared]{22}{$k^{1}_{22}$}\keyaddabove[shared]{23}{$k^{1}_{23}$}\keyaddabove[shared]{24}{$k^{1}_{24}$}\keyaddabove[shared]{25}{$k^{1}_{25}$}\keyaddabove[shared]{26}{$k^{1}_{26}$}\keyaddabove[shared]{27}{$k^{1}_{27}$}\keyaddabove[shared]{28}{$k^{1}_{28}$}\keyaddabove[shared]{29}{$k^{1}_{29}$}\keyaddabove[bwd]{30}{$k^{1}_{30}$}\keyaddabove[bwd]{31}{$k^{1}_{31}$}
+\figcell[fwd]{32}{16}{$c^{1}_{2}$}
+\figedge[fwd]{32}{32}\figedge[fwd]{36}{52}\figedge[fwd]{40}{8}\figedge[fwd]{44}{28}
+\keyaddabove[fwd]{32}{$k^{1}_{32}$}\keyaddabove[fwd]{33}{$k^{1}_{33}$}\keyaddabove[fwd]{34}{$k^{1}_{34}$}\keyaddabove[fwd]{35}{$k^{1}_{35}$}\keyaddabove[fwd]{36}{$k^{1}_{36}$}\keyaddabove[fwd]{37}{$k^{1}_{37}$}\keyaddabove[fwd]{38}{$k^{1}_{38}$}\keyaddabove[fwd]{39}{$k^{1}_{39}$}\keyaddabove[shared]{40}{$k^{1}_{40}$}\keyaddabove[shared]{41}{$k^{1}_{41}$}\keyaddabove[shared]{42}{$k^{1}_{42}$}\keyaddabove[shared]{43}{$k^{1}_{43}$}\keyaddabove[shared]{44}{$k^{1}_{44}$}\keyaddabove[shared]{45}{$k^{1}_{45}$}\keyaddabove[shared]{46}{$k^{1}_{46}$}\keyaddabove[shared]{47}{$k^{1}_{47}$}
+\figcell[fwd]{48}{16}{$c^{1}_{3}$}
+\figedge[fwd]{48}{48}\figedge[fwd]{52}{4}\figedge[fwd]{56}{24}\figedge[fwd]{60}{44}
+\keyaddabove[shared]{48}{$k^{1}_{48}$}\keyaddabove[bwd]{49}{$k^{1}_{49}$}\keyaddabove[bwd]{50}{$k^{1}_{50}$}\keyaddabove[bwd]{51}{$k^{1}_{51}$}\keyaddabove[bwd]{52}{$k^{1}_{52}$}\keyaddabove[bwd]{53}{$k^{1}_{53}$}\keyaddabove[bwd]{54}{$k^{1}_{54}$}\keyaddabove[bwd]{55}{$k^{1}_{55}$}\keyaddabove[bwd]{56}{$k^{1}_{56}$}\keyaddabove[fwd]{57}{$k^{1}_{57}$}\keyaddabove[fwd]{58}{$k^{1}_{58}$}\keyaddabove[fwd]{59}{$k^{1}_{59}$}\keyaddabove[shared]{60}{$k^{1}_{60}$}\keyaddabove[shared]{61}{$k^{1}_{61}$}\keyaddabove[shared]{62}{$k^{1}_{62}$}\keyaddabove[shared]{63}{$k^{1}_{63}$}
+\roundlabel{$R_{1}$}
+\newround
+%
+\figcell[fwd]{0}{16}{$c^{2}_{0}$}
+\figedge[fwd]{0}{0}\figedge[fwd]{4}{20}\figedge[fwd]{8}{40}\figedge[fwd]{12}{60}
+\keyaddabove[shared]{0}{$k^{0}_{5}$}\keyaddabove[shared]{1}{$k^{0}_{6}$}\keyaddabove[shared]{2}{$k^{0}_{7}$}\keyaddabove[shared]{3}{$k^{0}_{8}$}\keyaddabove[shared]{4}{$k^{0}_{9}$}\keyaddabove[shared]{5}{$k^{0}_{10}$}\keyaddabove[shared]{6}{$k^{0}_{11}$}\keyaddabove[shared]{7}{$k^{0}_{12}$}\keyaddabove[shared]{8}{$k^{0}_{13}$}\keyaddabove[shared]{9}{$k^{0}_{14}$}\keyaddabove[shared]{10}{$k^{0}_{15}$}\keyaddabove[shared]{11}{$k^{0}_{16}$}\keyaddabove[bwd]{12}{$k^{0}_{17}$}\keyaddabove[bwd]{13}{$k^{0}_{18}$}\keyaddabove[bwd]{14}{$k^{0}_{19}$}\keyaddabove[bwd]{15}{$k^{0}_{20}$}
+\figcell[fwd]{16}{16}{$c^{2}_{1}$}
+\figedge[fwd]{16}{16}\figedge[fwd]{20}{36}\figedge[fwd]{24}{56}\figedge[fwd]{28}{12}
+\keyaddabove[bwd]{16}{$k^{0}_{21}$}\keyaddabove[bwd]{17}{$k^{0}_{22}$}\keyaddabove[bwd]{18}{$k^{0}_{23}$}\keyaddabove[bwd]{19}{$k^{0}_{24}$}\keyaddabove[shared]{20}{$k^{0}_{25}$}\keyaddabove[shared]{21}{$k^{0}_{26}$}\keyaddabove[shared]{22}{$k^{0}_{27}$}\keyaddabove[shared]{23}{$k^{0}_{28}$}\keyaddabove[shared]{24}{$k^{0}_{29}$}\keyaddabove[shared]{25}{$k^{0}_{30}$}\keyaddabove[shared]{26}{$k^{0}_{31}$}\keyaddabove[shared]{27}{$k^{0}_{32}$}\keyaddabove[shared]{28}{$k^{0}_{33}$}\keyaddabove[shared]{29}{$k^{0}_{34}$}\keyaddabove[shared]{30}{$k^{0}_{35}$}\keyaddabove[shared]{31}{$k^{0}_{36}$}
+\figcell[fwd]{32}{16}{$c^{2}_{2}$}
+\figedge[fwd]{32}{32}\figedge[fwd]{36}{52}\figedge[fwd]{40}{8}\figedge[fwd]{44}{28}
+\keyaddabove[shared]{32}{$k^{0}_{37}$}\keyaddabove[shared]{33}{$k^{0}_{38}$}\keyaddabove[shared]{34}{$k^{0}_{39}$}\keyaddabove[shared]{35}{$k^{0}_{40}$}\keyaddabove[shared]{36}{$k^{0}_{41}$}\keyaddabove[shared]{37}{$k^{0}_{42}$}\keyaddabove[shared]{38}{$k^{0}_{43}$}\keyaddabove[shared]{39}{$k^{0}_{44}$}\keyaddabove[shared]{40}{$k^{0}_{45}$}\keyaddabove[shared]{41}{$k^{0}_{46}$}\keyaddabove[shared]{42}{$k^{0}_{47}$}\keyaddabove[shared]{43}{$k^{0}_{48}$}\keyaddabove[shared]{44}{$k^{0}_{49}$}\keyaddabove[shared]{45}{$k^{0}_{50}$}\keyaddabove[shared]{46}{$k^{0}_{51}$}\keyaddabove[shared]{47}{$k^{0}_{52}$}
+\figcell[mgd]{48}{16}{$c^{2}_{3}$}
+\figedge[fwd]{48}{48}\figedge[fwd]{52}{4}\figedge[fwd]{56}{24}\figedge[fwd]{60}{44}
+\keyaddabove[shared]{48}{$k^{0}_{53}$}\keyaddabove[shared]{49}{$k^{0}_{54}$}\keyaddabove[shared]{50}{$k^{0}_{55}$}\keyaddabove[shared]{51}{$k^{0}_{56}$}\keyaddabove[shared]{52}{$k^{0}_{57}$}\keyaddabove[shared]{53}{$k^{0}_{58}$}\keyaddabove[shared]{54}{$k^{0}_{59}$}\keyaddabove[shared]{55}{$k^{0}_{60}$}\keyaddabove[shared]{56}{$k^{0}_{61}$}\keyaddabove[shared]{57}{$k^{0}_{62}$}\keyaddabove[shared]{58}{$k^{0}_{63}$}\keyaddabove[shared]{59}{$k^{0}_{0}$}\keyaddabove[shared]{60}{$k^{0}_{1}$}\keyaddabove[shared]{61}{$k^{0}_{2}$}\keyaddabove[shared]{62}{$k^{0}_{3}$}\keyaddabove[shared]{63}{$k^{0}_{4}$}
+\roundlabel{$R_{2}$}
+\newround
+%
+\figcell[fwd]{0}{16}{$c^{3}_{0}$}
+\figedge[]{0}{0}\figedge[fwd]{4}{20}\figedge[fwd]{8}{40}\figedge[fwd]{12}{60}
+\keyaddabove[shared]{0}{$k^{1}_{5}$}\keyaddabove[shared]{1}{$k^{1}_{6}$}\keyaddabove[shared]{2}{$k^{1}_{7}$}\keyaddabove[shared]{3}{$k^{1}_{8}$}\keyaddabove[bwd]{4}{$k^{1}_{9}$}\keyaddabove[bwd]{5}{$k^{1}_{10}$}\keyaddabove[bwd]{6}{$k^{1}_{11}$}\keyaddabove[bwd]{7}{$k^{1}_{12}$}\keyaddabove[fwd]{8}{$k^{1}_{13}$}\keyaddabove[fwd]{9}{$k^{1}_{14}$}\keyaddabove[fwd]{10}{$k^{1}_{15}$}\keyaddabove[shared]{11}{$k^{1}_{16}$}\keyaddabove[shared]{12}{$k^{1}_{17}$}\keyaddabove[shared]{13}{$k^{1}_{18}$}\keyaddabove[shared]{14}{$k^{1}_{19}$}\keyaddabove[shared]{15}{$k^{1}_{20}$}
+\figcell[fwd]{16}{16}{$c^{3}_{1}$}
+\figedge[fwd]{16}{16}\figedge[fwd]{20}{36}\figedge[fwd]{24}{56}\figedge[]{28}{12}
+\keyaddabove[shared]{16}{$k^{1}_{21}$}\keyaddabove[shared]{17}{$k^{1}_{22}$}\keyaddabove[shared]{18}{$k^{1}_{23}$}\keyaddabove[shared]{19}{$k^{1}_{24}$}\keyaddabove[shared]{20}{$k^{1}_{25}$}\keyaddabove[shared]{21}{$k^{1}_{26}$}\keyaddabove[shared]{22}{$k^{1}_{27}$}\keyaddabove[shared]{23}{$k^{1}_{28}$}\keyaddabove[shared]{24}{$k^{1}_{29}$}\keyaddabove[bwd]{25}{$k^{1}_{30}$}\keyaddabove[bwd]{26}{$k^{1}_{31}$}\keyaddabove[fwd]{27}{$k^{1}_{32}$}\keyaddabove[fwd]{28}{$k^{1}_{33}$}\keyaddabove[fwd]{29}{$k^{1}_{34}$}\keyaddabove[fwd]{30}{$k^{1}_{35}$}\keyaddabove[fwd]{31}{$k^{1}_{36}$}
+\figcell[fwd]{32}{16}{$c^{3}_{2}$}
+\figedge[fwd]{32}{32}\figedge[fwd]{36}{52}\figedge[]{40}{8}\figedge[fwd]{44}{28}
+\keyaddabove[fwd]{32}{$k^{1}_{37}$}\keyaddabove[fwd]{33}{$k^{1}_{38}$}\keyaddabove[fwd]{34}{$k^{1}_{39}$}\keyaddabove[shared]{35}{$k^{1}_{40}$}\keyaddabove[shared]{36}{$k^{1}_{41}$}\keyaddabove[shared]{37}{$k^{1}_{42}$}\keyaddabove[shared]{38}{$k^{1}_{43}$}\keyaddabove[shared]{39}{$k^{1}_{44}$}\keyaddabove[shared]{40}{$k^{1}_{45}$}\keyaddabove[shared]{41}{$k^{1}_{46}$}\keyaddabove[shared]{42}{$k^{1}_{47}$}\keyaddabove[shared]{43}{$k^{1}_{48}$}\keyaddabove[bwd]{44}{$k^{1}_{49}$}\keyaddabove[bwd]{45}{$k^{1}_{50}$}\keyaddabove[bwd]{46}{$k^{1}_{51}$}\keyaddabove[bwd]{47}{$k^{1}_{52}$}
+\figcell[fwd]{48}{16}{$c^{3}_{3}$}
+\figedge[fwd]{48}{48}\figedge[]{52}{4}\figedge[fwd]{56}{24}\figedge[fwd]{60}{44}
+\keyaddabove[bwd]{48}{$k^{1}_{53}$}\keyaddabove[bwd]{49}{$k^{1}_{54}$}\keyaddabove[bwd]{50}{$k^{1}_{55}$}\keyaddabove[bwd]{51}{$k^{1}_{56}$}\keyaddabove[fwd]{52}{$k^{1}_{57}$}\keyaddabove[fwd]{53}{$k^{1}_{58}$}\keyaddabove[fwd]{54}{$k^{1}_{59}$}\keyaddabove[shared]{55}{$k^{1}_{60}$}\keyaddabove[shared]{56}{$k^{1}_{61}$}\keyaddabove[shared]{57}{$k^{1}_{62}$}\keyaddabove[shared]{58}{$k^{1}_{63}$}\keyaddabove[shared]{59}{$k^{1}_{0}$}\keyaddabove[shared]{60}{$k^{1}_{1}$}\keyaddabove[shared]{61}{$k^{1}_{2}$}\keyaddabove[shared]{62}{$k^{1}_{3}$}\keyaddabove[shared]{63}{$k^{1}_{4}$}
+\roundlabel{$R_{3}$}
+\newround
+%
+\figcell[]{0}{16}{$c^{4}_{0}$}
+\figedge[]{0}{0}\figedge[]{4}{20}\figedge[]{8}{40}\figedge[]{12}{60}
+\keyaddabove[shared]{0}{$k^{0}_{10}$}\keyaddabove[shared]{1}{$k^{0}_{11}$}\keyaddabove[shared]{2}{$k^{0}_{12}$}\keyaddabove[shared]{3}{$k^{0}_{13}$}\keyaddabove[shared]{4}{$k^{0}_{14}$}\keyaddabove[shared]{5}{$k^{0}_{15}$}\keyaddabove[shared]{6}{$k^{0}_{16}$}\keyaddabove[bwd]{7}{$k^{0}_{17}$}\keyaddabove[bwd]{8}{$k^{0}_{18}$}\keyaddabove[bwd]{9}{$k^{0}_{19}$}\keyaddabove[bwd]{10}{$k^{0}_{20}$}\keyaddabove[bwd]{11}{$k^{0}_{21}$}\keyaddabove[bwd]{12}{$k^{0}_{22}$}\keyaddabove[bwd]{13}{$k^{0}_{23}$}\keyaddabove[bwd]{14}{$k^{0}_{24}$}\keyaddabove[shared]{15}{$k^{0}_{25}$}
+\figcell[fwd]{16}{16}{$c^{4}_{1}$}
+\figedge[fwd]{16}{16}\figedge[]{20}{36}\figedge[]{24}{56}\figedge[fwd]{28}{12}
+\keyaddabove[shared]{16}{$k^{0}_{26}$}\keyaddabove[shared]{17}{$k^{0}_{27}$}\keyaddabove[shared]{18}{$k^{0}_{28}$}\keyaddabove[shared]{19}{$k^{0}_{29}$}\keyaddabove[shared]{20}{$k^{0}_{30}$}\keyaddabove[shared]{21}{$k^{0}_{31}$}\keyaddabove[shared]{22}{$k^{0}_{32}$}\keyaddabove[shared]{23}{$k^{0}_{33}$}\keyaddabove[shared]{24}{$k^{0}_{34}$}\keyaddabove[shared]{25}{$k^{0}_{35}$}\keyaddabove[shared]{26}{$k^{0}_{36}$}\keyaddabove[shared]{27}{$k^{0}_{37}$}\keyaddabove[shared]{28}{$k^{0}_{38}$}\keyaddabove[shared]{29}{$k^{0}_{39}$}\keyaddabove[shared]{30}{$k^{0}_{40}$}\keyaddabove[shared]{31}{$k^{0}_{41}$}
+\figcell[fwd]{32}{16}{$c^{4}_{2}$}
+\figedge[]{32}{32}\figedge[]{36}{52}\figedge[fwd]{40}{8}\figedge[fwd]{44}{28}
+\keyaddabove[shared]{32}{$k^{0}_{42}$}\keyaddabove[shared]{33}{$k^{0}_{43}$}\keyaddabove[shared]{34}{$k^{0}_{44}$}\keyaddabove[shared]{35}{$k^{0}_{45}$}\keyaddabove[shared]{36}{$k^{0}_{46}$}\keyaddabove[shared]{37}{$k^{0}_{47}$}\keyaddabove[shared]{38}{$k^{0}_{48}$}\keyaddabove[shared]{39}{$k^{0}_{49}$}\keyaddabove[shared]{40}{$k^{0}_{50}$}\keyaddabove[shared]{41}{$k^{0}_{51}$}\keyaddabove[shared]{42}{$k^{0}_{52}$}\keyaddabove[shared]{43}{$k^{0}_{53}$}\keyaddabove[shared]{44}{$k^{0}_{54}$}\keyaddabove[shared]{45}{$k^{0}_{55}$}\keyaddabove[shared]{46}{$k^{0}_{56}$}\keyaddabove[shared]{47}{$k^{0}_{57}$}
+\figcell[fwd]{48}{16}{$c^{4}_{3}$}
+\figedge[]{48}{48}\figedge[fwd]{52}{4}\figedge[fwd]{56}{24}\figedge[]{60}{44}
+\keyaddabove[shared]{48}{$k^{0}_{58}$}\keyaddabove[shared]{49}{$k^{0}_{59}$}\keyaddabove[shared]{50}{$k^{0}_{60}$}\keyaddabove[shared]{51}{$k^{0}_{61}$}\keyaddabove[shared]{52}{$k^{0}_{62}$}\keyaddabove[shared]{53}{$k^{0}_{63}$}\keyaddabove[shared]{54}{$k^{0}_{0}$}\keyaddabove[shared]{55}{$k^{0}_{1}$}\keyaddabove[shared]{56}{$k^{0}_{2}$}\keyaddabove[shared]{57}{$k^{0}_{3}$}\keyaddabove[shared]{58}{$k^{0}_{4}$}\keyaddabove[shared]{59}{$k^{0}_{5}$}\keyaddabove[shared]{60}{$k^{0}_{6}$}\keyaddabove[shared]{61}{$k^{0}_{7}$}\keyaddabove[shared]{62}{$k^{0}_{8}$}\keyaddabove[shared]{63}{$k^{0}_{9}$}
+\roundlabel{$R_{4}$}
+\newround
+%
+\figcell[fwd]{0}{16}{$c^{5}_{0}$}
+\figedge[]{0}{0}\figedge[fwd]{4}{20}\figedge[fwd]{8}{40}\figedge[fwd]{12}{60}
+\keyaddabove[bwd]{0}{$k^{1}_{10}$}\keyaddabove[bwd]{1}{$k^{1}_{11}$}\keyaddabove[bwd]{2}{$k^{1}_{12}$}\keyaddabove[fwd]{3}{$k^{1}_{13}$}\keyaddabove[fwd]{4}{$k^{1}_{14}$}\keyaddabove[fwd]{5}{$k^{1}_{15}$}\keyaddabove[shared]{6}{$k^{1}_{16}$}\keyaddabove[shared]{7}{$k^{1}_{17}$}\keyaddabove[shared]{8}{$k^{1}_{18}$}\keyaddabove[shared]{9}{$k^{1}_{19}$}\keyaddabove[shared]{10}{$k^{1}_{20}$}\keyaddabove[shared]{11}{$k^{1}_{21}$}\keyaddabove[shared]{12}{$k^{1}_{22}$}\keyaddabove[shared]{13}{$k^{1}_{23}$}\keyaddabove[shared]{14}{$k^{1}_{24}$}\keyaddabove[shared]{15}{$k^{1}_{25}$}
+\figcell[fwd]{16}{16}{$c^{5}_{1}$}
+\figedge[fwd]{16}{16}\figedge[fwd]{20}{36}\figedge[fwd]{24}{56}\figedge[]{28}{12}
+\keyaddabove[shared]{16}{$k^{1}_{26}$}\keyaddabove[shared]{17}{$k^{1}_{27}$}\keyaddabove[shared]{18}{$k^{1}_{28}$}\keyaddabove[shared]{19}{$k^{1}_{29}$}\keyaddabove[bwd]{20}{$k^{1}_{30}$}\keyaddabove[bwd]{21}{$k^{1}_{31}$}\keyaddabove[fwd]{22}{$k^{1}_{32}$}\keyaddabove[fwd]{23}{$k^{1}_{33}$}\keyaddabove[fwd]{24}{$k^{1}_{34}$}\keyaddabove[fwd]{25}{$k^{1}_{35}$}\keyaddabove[fwd]{26}{$k^{1}_{36}$}\keyaddabove[fwd]{27}{$k^{1}_{37}$}\keyaddabove[fwd]{28}{$k^{1}_{38}$}\keyaddabove[fwd]{29}{$k^{1}_{39}$}\keyaddabove[shared]{30}{$k^{1}_{40}$}\keyaddabove[shared]{31}{$k^{1}_{41}$}
+\figcell[]{32}{16}{$c^{5}_{2}$}
+\figedge[]{32}{32}\figedge[]{36}{52}\figedge[]{40}{8}\figedge[]{44}{28}
+\keyaddabove[shared]{32}{$k^{1}_{42}$}\keyaddabove[shared]{33}{$k^{1}_{43}$}\keyaddabove[shared]{34}{$k^{1}_{44}$}\keyaddabove[shared]{35}{$k^{1}_{45}$}\keyaddabove[shared]{36}{$k^{1}_{46}$}\keyaddabove[shared]{37}{$k^{1}_{47}$}\keyaddabove[shared]{38}{$k^{1}_{48}$}\keyaddabove[bwd]{39}{$k^{1}_{49}$}\keyaddabove[bwd]{40}{$k^{1}_{50}$}\keyaddabove[bwd]{41}{$k^{1}_{51}$}\keyaddabove[bwd]{42}{$k^{1}_{52}$}\keyaddabove[bwd]{43}{$k^{1}_{53}$}\keyaddabove[bwd]{44}{$k^{1}_{54}$}\keyaddabove[bwd]{45}{$k^{1}_{55}$}\keyaddabove[bwd]{46}{$k^{1}_{56}$}\keyaddabove[fwd]{47}{$k^{1}_{57}$}
+\figcell[]{48}{16}{$c^{5}_{3}$}
+\figedge[]{48}{48}\figedge[]{52}{4}\figedge[]{56}{24}\figedge[]{60}{44}
+\keyaddabove[fwd]{48}{$k^{1}_{58}$}\keyaddabove[fwd]{49}{$k^{1}_{59}$}\keyaddabove[shared]{50}{$k^{1}_{60}$}\keyaddabove[shared]{51}{$k^{1}_{61}$}\keyaddabove[shared]{52}{$k^{1}_{62}$}\keyaddabove[shared]{53}{$k^{1}_{63}$}\keyaddabove[shared]{54}{$k^{1}_{0}$}\keyaddabove[shared]{55}{$k^{1}_{1}$}\keyaddabove[shared]{56}{$k^{1}_{2}$}\keyaddabove[shared]{57}{$k^{1}_{3}$}\keyaddabove[shared]{58}{$k^{1}_{4}$}\keyaddabove[shared]{59}{$k^{1}_{5}$}\keyaddabove[shared]{60}{$k^{1}_{6}$}\keyaddabove[shared]{61}{$k^{1}_{7}$}\keyaddabove[shared]{62}{$k^{1}_{8}$}\keyaddabove[bwd]{63}{$k^{1}_{9}$}
+\roundlabel{$R_{5}$}
+\newround
+%
+\figcell[]{0}{16}{$c^{6}_{0}$}
+\figedge[]{0}{0}\figedge[]{4}{20}\figedge[]{8}{40}\figedge[]{12}{60}
+\keyaddabove[shared]{0}{$k^{0}_{15}$}\keyaddabove[shared]{1}{$k^{0}_{16}$}\keyaddabove[bwd]{2}{$k^{0}_{17}$}\keyaddabove[bwd]{3}{$k^{0}_{18}$}\keyaddabove[bwd]{4}{$k^{0}_{19}$}\keyaddabove[bwd]{5}{$k^{0}_{20}$}\keyaddabove[bwd]{6}{$k^{0}_{21}$}\keyaddabove[bwd]{7}{$k^{0}_{22}$}\keyaddabove[bwd]{8}{$k^{0}_{23}$}\keyaddabove[bwd]{9}{$k^{0}_{24}$}\keyaddabove[shared]{10}{$k^{0}_{25}$}\keyaddabove[shared]{11}{$k^{0}_{26}$}\keyaddabove[shared]{12}{$k^{0}_{27}$}\keyaddabove[shared]{13}{$k^{0}_{28}$}\keyaddabove[shared]{14}{$k^{0}_{29}$}\keyaddabove[shared]{15}{$k^{0}_{30}$}
+\figcell[mgd]{16}{16}{$c^{6}_{1}$}
+\figedge[bwd]{16}{16}\figedge[bwd]{20}{36}\figedge[]{24}{56}\figedge[bwd]{28}{12}
+\keyaddabove[shared]{16}{$k^{0}_{31}$}\keyaddabove[shared]{17}{$k^{0}_{32}$}\keyaddabove[shared]{18}{$k^{0}_{33}$}\keyaddabove[shared]{19}{$k^{0}_{34}$}\keyaddabove[shared]{20}{$k^{0}_{35}$}\keyaddabove[shared]{21}{$k^{0}_{36}$}\keyaddabove[shared]{22}{$k^{0}_{37}$}\keyaddabove[shared]{23}{$k^{0}_{38}$}\keyaddabove[shared]{24}{$k^{0}_{39}$}\keyaddabove[shared]{25}{$k^{0}_{40}$}\keyaddabove[shared]{26}{$k^{0}_{41}$}\keyaddabove[shared]{27}{$k^{0}_{42}$}\keyaddabove[shared]{28}{$k^{0}_{43}$}\keyaddabove[shared]{29}{$k^{0}_{44}$}\keyaddabove[shared]{30}{$k^{0}_{45}$}\keyaddabove[shared]{31}{$k^{0}_{46}$}
+\figcell[mgd]{32}{16}{$c^{6}_{2}$}
+\figedge[bwd]{32}{32}\figedge[]{36}{52}\figedge[bwd]{40}{8}\figedge[bwd]{44}{28}
+\keyaddabove[shared]{32}{$k^{0}_{47}$}\keyaddabove[shared]{33}{$k^{0}_{48}$}\keyaddabove[shared]{34}{$k^{0}_{49}$}\keyaddabove[shared]{35}{$k^{0}_{50}$}\keyaddabove[shared]{36}{$k^{0}_{51}$}\keyaddabove[shared]{37}{$k^{0}_{52}$}\keyaddabove[shared]{38}{$k^{0}_{53}$}\keyaddabove[shared]{39}{$k^{0}_{54}$}\keyaddabove[shared]{40}{$k^{0}_{55}$}\keyaddabove[shared]{41}{$k^{0}_{56}$}\keyaddabove[shared]{42}{$k^{0}_{57}$}\keyaddabove[shared]{43}{$k^{0}_{58}$}\keyaddabove[shared]{44}{$k^{0}_{59}$}\keyaddabove[shared]{45}{$k^{0}_{60}$}\keyaddabove[shared]{46}{$k^{0}_{61}$}\keyaddabove[shared]{47}{$k^{0}_{62}$}
+\figcell[mgd]{48}{16}{$c^{6}_{3}$}
+\figedge[]{48}{48}\figedge[bwd]{52}{4}\figedge[bwd]{56}{24}\figedge[bwd]{60}{44}
+\keyaddabove[shared]{48}{$k^{0}_{63}$}\keyaddabove[shared]{49}{$k^{0}_{0}$}\keyaddabove[shared]{50}{$k^{0}_{1}$}\keyaddabove[shared]{51}{$k^{0}_{2}$}\keyaddabove[shared]{52}{$k^{0}_{3}$}\keyaddabove[shared]{53}{$k^{0}_{4}$}\keyaddabove[shared]{54}{$k^{0}_{5}$}\keyaddabove[shared]{55}{$k^{0}_{6}$}\keyaddabove[shared]{56}{$k^{0}_{7}$}\keyaddabove[shared]{57}{$k^{0}_{8}$}\keyaddabove[shared]{58}{$k^{0}_{9}$}\keyaddabove[shared]{59}{$k^{0}_{10}$}\keyaddabove[shared]{60}{$k^{0}_{11}$}\keyaddabove[shared]{61}{$k^{0}_{12}$}\keyaddabove[shared]{62}{$k^{0}_{13}$}\keyaddabove[shared]{63}{$k^{0}_{14}$}
+\roundlabel{$R_{6}$}
+\newround
+%
+\figcell[bwd]{0}{16}{$c^{7}_{0}$}
+\figedge[bwd]{0}{0}\figedge[bwd]{4}{20}\figedge[bwd]{8}{40}\figedge[bwd]{12}{60}
+\keyaddabove[fwd]{0}{$k^{1}_{15}$}\keyaddabove[shared]{1}{$k^{1}_{16}$}\keyaddabove[shared]{2}{$k^{1}_{17}$}\keyaddabove[shared]{3}{$k^{1}_{18}$}\keyaddabove[shared]{4}{$k^{1}_{19}$}\keyaddabove[shared]{5}{$k^{1}_{20}$}\keyaddabove[shared]{6}{$k^{1}_{21}$}\keyaddabove[shared]{7}{$k^{1}_{22}$}\keyaddabove[shared]{8}{$k^{1}_{23}$}\keyaddabove[shared]{9}{$k^{1}_{24}$}\keyaddabove[shared]{10}{$k^{1}_{25}$}\keyaddabove[shared]{11}{$k^{1}_{26}$}\keyaddabove[shared]{12}{$k^{1}_{27}$}\keyaddabove[shared]{13}{$k^{1}_{28}$}\keyaddabove[shared]{14}{$k^{1}_{29}$}\keyaddabove[bwd]{15}{$k^{1}_{30}$}
+\figcell[bwd]{16}{16}{$c^{7}_{1}$}
+\figedge[bwd]{16}{16}\figedge[bwd]{20}{36}\figedge[bwd]{24}{56}\figedge[bwd]{28}{12}
+\keyaddabove[bwd]{16}{$k^{1}_{31}$}\keyaddabove[fwd]{17}{$k^{1}_{32}$}\keyaddabove[fwd]{18}{$k^{1}_{33}$}\keyaddabove[fwd]{19}{$k^{1}_{34}$}\keyaddabove[fwd]{20}{$k^{1}_{35}$}\keyaddabove[fwd]{21}{$k^{1}_{36}$}\keyaddabove[fwd]{22}{$k^{1}_{37}$}\keyaddabove[fwd]{23}{$k^{1}_{38}$}\keyaddabove[fwd]{24}{$k^{1}_{39}$}\keyaddabove[shared]{25}{$k^{1}_{40}$}\keyaddabove[shared]{26}{$k^{1}_{41}$}\keyaddabove[shared]{27}{$k^{1}_{42}$}\keyaddabove[shared]{28}{$k^{1}_{43}$}\keyaddabove[shared]{29}{$k^{1}_{44}$}\keyaddabove[shared]{30}{$k^{1}_{45}$}\keyaddabove[shared]{31}{$k^{1}_{46}$}
+\figcell[bwd]{32}{16}{$c^{7}_{2}$}
+\figedge[bwd]{32}{32}\figedge[bwd]{36}{52}\figedge[bwd]{40}{8}\figedge[bwd]{44}{28}
+\keyaddabove[shared]{32}{$k^{1}_{47}$}\keyaddabove[shared]{33}{$k^{1}_{48}$}\keyaddabove[bwd]{34}{$k^{1}_{49}$}\keyaddabove[bwd]{35}{$k^{1}_{50}$}\keyaddabove[bwd]{36}{$k^{1}_{51}$}\keyaddabove[bwd]{37}{$k^{1}_{52}$}\keyaddabove[bwd]{38}{$k^{1}_{53}$}\keyaddabove[bwd]{39}{$k^{1}_{54}$}\keyaddabove[bwd]{40}{$k^{1}_{55}$}\keyaddabove[bwd]{41}{$k^{1}_{56}$}\keyaddabove[fwd]{42}{$k^{1}_{57}$}\keyaddabove[fwd]{43}{$k^{1}_{58}$}\keyaddabove[fwd]{44}{$k^{1}_{59}$}\keyaddabove[shared]{45}{$k^{1}_{60}$}\keyaddabove[shared]{46}{$k^{1}_{61}$}\keyaddabove[shared]{47}{$k^{1}_{62}$}
+\figcell[]{48}{16}{$c^{7}_{3}$}
+\figedge[]{48}{48}\figedge[]{52}{4}\figedge[]{56}{24}\figedge[]{60}{44}
+\keyaddabove[shared]{48}{$k^{1}_{63}$}\keyaddabove[shared]{49}{$k^{1}_{0}$}\keyaddabove[shared]{50}{$k^{1}_{1}$}\keyaddabove[shared]{51}{$k^{1}_{2}$}\keyaddabove[shared]{52}{$k^{1}_{3}$}\keyaddabove[shared]{53}{$k^{1}_{4}$}\keyaddabove[shared]{54}{$k^{1}_{5}$}\keyaddabove[shared]{55}{$k^{1}_{6}$}\keyaddabove[shared]{56}{$k^{1}_{7}$}\keyaddabove[shared]{57}{$k^{1}_{8}$}\keyaddabove[bwd]{58}{$k^{1}_{9}$}\keyaddabove[bwd]{59}{$k^{1}_{10}$}\keyaddabove[bwd]{60}{$k^{1}_{11}$}\keyaddabove[bwd]{61}{$k^{1}_{12}$}\keyaddabove[fwd]{62}{$k^{1}_{13}$}\keyaddabove[fwd]{63}{$k^{1}_{14}$}
+\roundlabel{$R_{7}$}
+\newround
+%
+\figcell[bwd]{0}{16}{$c^{8}_{0}$}
+\figedge[bwd]{0}{0}\figedge[bwd]{4}{20}\figedge[bwd]{8}{40}\figedge[bwd]{12}{60}
+\keyaddabove[bwd]{0}{$k^{0}_{20}$}\keyaddabove[bwd]{1}{$k^{0}_{21}$}\keyaddabove[bwd]{2}{$k^{0}_{22}$}\keyaddabove[bwd]{3}{$k^{0}_{23}$}\keyaddabove[bwd]{4}{$k^{0}_{24}$}\keyaddabove[shared]{5}{$k^{0}_{25}$}\keyaddabove[shared]{6}{$k^{0}_{26}$}\keyaddabove[shared]{7}{$k^{0}_{27}$}\keyaddabove[shared]{8}{$k^{0}_{28}$}\keyaddabove[shared]{9}{$k^{0}_{29}$}\keyaddabove[shared]{10}{$k^{0}_{30}$}\keyaddabove[shared]{11}{$k^{0}_{31}$}\keyaddabove[shared]{12}{$k^{0}_{32}$}\keyaddabove[shared]{13}{$k^{0}_{33}$}\keyaddabove[shared]{14}{$k^{0}_{34}$}\keyaddabove[shared]{15}{$k^{0}_{35}$}
+\figcell[mgd]{16}{16}{$c^{8}_{1}$}
+\figedge[bwd]{16}{16}\figedge[bwd]{20}{36}\figedge[bwd]{24}{56}\figedge[bwd]{28}{12}
+\keyaddabove[shared]{16}{$k^{0}_{36}$}\keyaddabove[shared]{17}{$k^{0}_{37}$}\keyaddabove[shared]{18}{$k^{0}_{38}$}\keyaddabove[shared]{19}{$k^{0}_{39}$}\keyaddabove[shared]{20}{$k^{0}_{40}$}\keyaddabove[shared]{21}{$k^{0}_{41}$}\keyaddabove[shared]{22}{$k^{0}_{42}$}\keyaddabove[shared]{23}{$k^{0}_{43}$}\keyaddabove[shared]{24}{$k^{0}_{44}$}\keyaddabove[shared]{25}{$k^{0}_{45}$}\keyaddabove[shared]{26}{$k^{0}_{46}$}\keyaddabove[shared]{27}{$k^{0}_{47}$}\keyaddabove[shared]{28}{$k^{0}_{48}$}\keyaddabove[shared]{29}{$k^{0}_{49}$}\keyaddabove[shared]{30}{$k^{0}_{50}$}\keyaddabove[shared]{31}{$k^{0}_{51}$}
+\figcell[bwd]{32}{16}{$c^{8}_{2}$}
+\figedge[bwd]{32}{32}\figedge[bwd]{36}{52}\figedge[bwd]{40}{8}\figedge[bwd]{44}{28}
+\keyaddabove[shared]{32}{$k^{0}_{52}$}\keyaddabove[shared]{33}{$k^{0}_{53}$}\keyaddabove[shared]{34}{$k^{0}_{54}$}\keyaddabove[shared]{35}{$k^{0}_{55}$}\keyaddabove[shared]{36}{$k^{0}_{56}$}\keyaddabove[shared]{37}{$k^{0}_{57}$}\keyaddabove[shared]{38}{$k^{0}_{58}$}\keyaddabove[shared]{39}{$k^{0}_{59}$}\keyaddabove[shared]{40}{$k^{0}_{60}$}\keyaddabove[shared]{41}{$k^{0}_{61}$}\keyaddabove[shared]{42}{$k^{0}_{62}$}\keyaddabove[shared]{43}{$k^{0}_{63}$}\keyaddabove[shared]{44}{$k^{0}_{0}$}\keyaddabove[shared]{45}{$k^{0}_{1}$}\keyaddabove[shared]{46}{$k^{0}_{2}$}\keyaddabove[shared]{47}{$k^{0}_{3}$}
+\figcell[bwd]{48}{16}{$c^{8}_{3}$}
+\figedge[bwd]{48}{48}\figedge[bwd]{52}{4}\figedge[bwd]{56}{24}\figedge[bwd]{60}{44}
+\keyaddabove[shared]{48}{$k^{0}_{4}$}\keyaddabove[shared]{49}{$k^{0}_{5}$}\keyaddabove[shared]{50}{$k^{0}_{6}$}\keyaddabove[shared]{51}{$k^{0}_{7}$}\keyaddabove[shared]{52}{$k^{0}_{8}$}\keyaddabove[shared]{53}{$k^{0}_{9}$}\keyaddabove[shared]{54}{$k^{0}_{10}$}\keyaddabove[shared]{55}{$k^{0}_{11}$}\keyaddabove[shared]{56}{$k^{0}_{12}$}\keyaddabove[shared]{57}{$k^{0}_{13}$}\keyaddabove[shared]{58}{$k^{0}_{14}$}\keyaddabove[shared]{59}{$k^{0}_{15}$}\keyaddabove[shared]{60}{$k^{0}_{16}$}\keyaddabove[bwd]{61}{$k^{0}_{17}$}\keyaddabove[bwd]{62}{$k^{0}_{18}$}\keyaddabove[bwd]{63}{$k^{0}_{19}$}
+\roundlabel{$R_{8}$}
+\newround
+%
+\figcell[bwd]{0}{4}{}
+\figedge[bwd]{0}{0}
+\keyaddabove[shared]{0}{$k^{1}_{20}$}\keyaddabove[shared]{1}{$k^{1}_{21}$}\keyaddabove[shared]{2}{$k^{1}_{22}$}\keyaddabove[shared]{3}{$k^{1}_{23}$}
+\figcell[bwd]{4}{4}{}
+\figedge[bwd]{4}{20}
+\keyaddabove[shared]{4}{$k^{1}_{24}$}\keyaddabove[shared]{5}{$k^{1}_{25}$}\keyaddabove[shared]{6}{$k^{1}_{26}$}\keyaddabove[shared]{7}{$k^{1}_{27}$}
+\figcell[bwd]{8}{4}{}
+\figedge[bwd]{8}{40}
+\keyaddabove[shared]{8}{$k^{1}_{28}$}\keyaddabove[shared]{9}{$k^{1}_{29}$}\keyaddabove[bwd]{10}{$k^{1}_{30}$}\keyaddabove[bwd]{11}{$k^{1}_{31}$}
+\figcell[bwd]{12}{4}{}
+\figedge[bwd]{12}{60}
+\keyaddabove[fwd]{12}{$k^{1}_{32}$}\keyaddabove[fwd]{13}{$k^{1}_{33}$}\keyaddabove[fwd]{14}{$k^{1}_{34}$}\keyaddabove[fwd]{15}{$k^{1}_{35}$}
+\figcell[bwd]{16}{4}{}
+\figedge[bwd]{16}{16}
+\keyaddabove[fwd]{16}{$k^{1}_{36}$}\keyaddabove[fwd]{17}{$k^{1}_{37}$}\keyaddabove[fwd]{18}{$k^{1}_{38}$}\keyaddabove[fwd]{19}{$k^{1}_{39}$}
+\figcell[bwd]{20}{4}{}
+\figedge[bwd]{20}{36}
+\keyaddabove[shared]{20}{$k^{1}_{40}$}\keyaddabove[shared]{21}{$k^{1}_{41}$}\keyaddabove[shared]{22}{$k^{1}_{42}$}\keyaddabove[shared]{23}{$k^{1}_{43}$}
+\figcell[bwd]{24}{4}{}
+\figedge[bwd]{24}{56}
+\keyaddabove[shared]{24}{$k^{1}_{44}$}\keyaddabove[shared]{25}{$k^{1}_{45}$}\keyaddabove[shared]{26}{$k^{1}_{46}$}\keyaddabove[shared]{27}{$k^{1}_{47}$}
+\figcell[bwd]{28}{4}{}
+\figedge[bwd]{28}{12}
+\keyaddabove[shared]{28}{$k^{1}_{48}$}\keyaddabove[bwd]{29}{$k^{1}_{49}$}\keyaddabove[bwd]{30}{$k^{1}_{50}$}\keyaddabove[bwd]{31}{$k^{1}_{51}$}
+\figcell[bwd]{32}{4}{}
+\figedge[bwd]{32}{32}
+\keyaddabove[bwd]{32}{$k^{1}_{52}$}\keyaddabove[bwd]{33}{$k^{1}_{53}$}\keyaddabove[bwd]{34}{$k^{1}_{54}$}\keyaddabove[bwd]{35}{$k^{1}_{55}$}
+\figcell[bwd]{36}{4}{}
+\figedge[bwd]{36}{52}
+\keyaddabove[bwd]{36}{$k^{1}_{56}$}\keyaddabove[fwd]{37}{$k^{1}_{57}$}\keyaddabove[fwd]{38}{$k^{1}_{58}$}\keyaddabove[fwd]{39}{$k^{1}_{59}$}
+\figcell[bwd]{40}{4}{}
+\figedge[bwd]{40}{8}
+\keyaddabove[shared]{40}{$k^{1}_{60}$}\keyaddabove[shared]{41}{$k^{1}_{61}$}\keyaddabove[shared]{42}{$k^{1}_{62}$}\keyaddabove[shared]{43}{$k^{1}_{63}$}
+\figcell[bwd]{44}{4}{}
+\figedge[bwd]{44}{28}
+\keyaddabove[shared]{44}{$k^{1}_{0}$}\keyaddabove[shared]{45}{$k^{1}_{1}$}\keyaddabove[shared]{46}{$k^{1}_{2}$}\keyaddabove[shared]{47}{$k^{1}_{3}$}
+\figcell[bwd]{48}{4}{}
+\figedge[bwd]{48}{48}
+\keyaddabove[shared]{48}{$k^{1}_{4}$}\keyaddabove[shared]{49}{$k^{1}_{5}$}\keyaddabove[shared]{50}{$k^{1}_{6}$}\keyaddabove[shared]{51}{$k^{1}_{7}$}
+\figcell[bwd]{52}{4}{}
+\figedge[bwd]{52}{4}
+\keyaddabove[shared]{52}{$k^{1}_{8}$}\keyaddabove[bwd]{53}{$k^{1}_{9}$}\keyaddabove[bwd]{54}{$k^{1}_{10}$}\keyaddabove[bwd]{55}{$k^{1}_{11}$}
+\figcell[bwd]{56}{4}{}
+\figedge[bwd]{56}{24}
+\keyaddabove[bwd]{56}{$k^{1}_{12}$}\keyaddabove[fwd]{57}{$k^{1}_{13}$}\keyaddabove[fwd]{58}{$k^{1}_{14}$}\keyaddabove[fwd]{59}{$k^{1}_{15}$}
+\figcell[bwd]{60}{4}{}
+\figedge[bwd]{60}{44}
+\keyaddabove[shared]{60}{$k^{1}_{16}$}\keyaddabove[shared]{61}{$k^{1}_{17}$}\keyaddabove[shared]{62}{$k^{1}_{18}$}\keyaddabove[shared]{63}{$k^{1}_{19}$}
+\roundlabel{$R_{9}$}
+\newround
+%
+\figcell[bwd]{0}{64}{$c^{10}_{0}$}
+\figedge[bwd]{0}{0}\figedge[bwd]{4}{4}\figedge[bwd]{8}{8}\figedge[bwd]{12}{12}\figedge[bwd]{16}{16}\figedge[bwd]{20}{20}\figedge[bwd]{24}{24}\figedge[bwd]{28}{28}\figedge[bwd]{32}{32}\figedge[bwd]{36}{36}\figedge[bwd]{40}{40}\figedge[bwd]{44}{44}\figedge[bwd]{48}{48}\figedge[bwd]{52}{52}\figedge[bwd]{56}{56}\figedge[bwd]{60}{60}
+\keyaddabove[shared]{0}{$k^{0}_{25}$}\keyaddabove[shared]{1}{$k^{0}_{26}$}\keyaddabove[shared]{2}{$k^{0}_{27}$}\keyaddabove[shared]{3}{$k^{0}_{28}$}\keyaddabove[shared]{4}{$k^{0}_{29}$}\keyaddabove[shared]{5}{$k^{0}_{30}$}\keyaddabove[shared]{6}{$k^{0}_{31}$}\keyaddabove[shared]{7}{$k^{0}_{32}$}\keyaddabove[shared]{8}{$k^{0}_{33}$}\keyaddabove[shared]{9}{$k^{0}_{34}$}\keyaddabove[shared]{10}{$k^{0}_{35}$}\keyaddabove[shared]{11}{$k^{0}_{36}$}\keyaddabove[shared]{12}{$k^{0}_{37}$}\keyaddabove[shared]{13}{$k^{0}_{38}$}\keyaddabove[shared]{14}{$k^{0}_{39}$}\keyaddabove[shared]{15}{$k^{0}_{40}$}\keyaddabove[shared]{16}{$k^{0}_{41}$}\keyaddabove[shared]{17}{$k^{0}_{42}$}\keyaddabove[shared]{18}{$k^{0}_{43}$}\keyaddabove[shared]{19}{$k^{0}_{44}$}\keyaddabove[shared]{20}{$k^{0}_{45}$}\keyaddabove[shared]{21}{$k^{0}_{46}$}\keyaddabove[shared]{22}{$k^{0}_{47}$}\keyaddabove[shared]{23}{$k^{0}_{48}$}\keyaddabove[shared]{24}{$k^{0}_{49}$}\keyaddabove[shared]{25}{$k^{0}_{50}$}\keyaddabove[shared]{26}{$k^{0}_{51}$}\keyaddabove[shared]{27}{$k^{0}_{52}$}\keyaddabove[shared]{28}{$k^{0}_{53}$}\keyaddabove[shared]{29}{$k^{0}_{54}$}\keyaddabove[shared]{30}{$k^{0}_{55}$}\keyaddabove[shared]{31}{$k^{0}_{56}$}\keyaddabove[shared]{32}{$k^{0}_{57}$}\keyaddabove[shared]{33}{$k^{0}_{58}$}\keyaddabove[shared]{34}{$k^{0}_{59}$}\keyaddabove[shared]{35}{$k^{0}_{60}$}\keyaddabove[shared]{36}{$k^{0}_{61}$}\keyaddabove[shared]{37}{$k^{0}_{62}$}\keyaddabove[shared]{38}{$k^{0}_{63}$}\keyaddabove[shared]{39}{$k^{0}_{0}$}\keyaddabove[shared]{40}{$k^{0}_{1}$}\keyaddabove[shared]{41}{$k^{0}_{2}$}\keyaddabove[shared]{42}{$k^{0}_{3}$}\keyaddabove[shared]{43}{$k^{0}_{4}$}\keyaddabove[shared]{44}{$k^{0}_{5}$}\keyaddabove[shared]{45}{$k^{0}_{6}$}\keyaddabove[shared]{46}{$k^{0}_{7}$}\keyaddabove[shared]{47}{$k^{0}_{8}$}\keyaddabove[shared]{48}{$k^{0}_{9}$}\keyaddabove[shared]{49}{$k^{0}_{10}$}\keyaddabove[shared]{50}{$k^{0}_{11}$}\keyaddabove[shared]{51}{$k^{0}_{12}$}\keyaddabove[shared]{52}{$k^{0}_{13}$}\keyaddabove[shared]{53}{$k^{0}_{14}$}\keyaddabove[shared]{54}{$k^{0}_{15}$}\keyaddabove[shared]{55}{$k^{0}_{16}$}\keyaddabove[bwd]{56}{$k^{0}_{17}$}\keyaddabove[bwd]{57}{$k^{0}_{18}$}\keyaddabove[bwd]{58}{$k^{0}_{19}$}\keyaddabove[bwd]{59}{$k^{0}_{20}$}\keyaddabove[bwd]{60}{$k^{0}_{21}$}\keyaddabove[bwd]{61}{$k^{0}_{22}$}\keyaddabove[bwd]{62}{$k^{0}_{23}$}\keyaddabove[bwd]{63}{$k^{0}_{24}$}
+\roundlabel{$R_{10}$}
+\newround
+%
+\end{figpresent}
+\end{document}
