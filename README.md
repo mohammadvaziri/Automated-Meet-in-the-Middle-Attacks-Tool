@@ -32,26 +32,31 @@ Run the tool using the following command:
     
 🔹 Required Arguments:
 
-Argument	Description
---cipher	Selects the cipher (e.g., CRAFT, Midori64, Midori128, WARP, PRESENT80, ARADI).
---attack_type	Specifies the attack type: regular_key or equivalent_key.
+
+| Argument       | Description |
+|---------------|-------------|
+| `--cipher`    | Specifies the cipher to analyze. Choose from: `CRAFT`, `Midori64`, `Midori128`, `WARP`, `PRESENT80`, `ARADI`. |
+| `--attack_type` | Defines the attack type: `regular_key` or `equivalent_key`. |
+
 
 🔹 Optional Arguments:
 
-Argument	Description
---rounds <N>	Overrides the default number of rounds (e.g., --rounds 5).
---guess_and_determine	Enables guess-and-determine (only for PRESENT80).
---output <FILENAME>	Specifies the output file (default: output.txt).
---print_key	Prints the generated forward & backward keys.
---print_block	Prints forward & backward blocks.
---print_block_car	Prints block cardinality.
---print_bit_addr_info	Prints bit address information.
---evaluate_key_diffusion <KEY_BIT>	Evaluates key bit diffusion (e.g., --evaluate_key_diffusion k_13).
---navigate_bit_position <BIT_POS>	Navigates bit position progress (e.g., --navigate_bit_position 3).
+| Argument                 | Description |
+|-------------------------|-------------|
+| `--cipher`              | Selects the cipher (e.g., `CRAFT`, `Midori64`, `WARP`). |
+| `--attack_type`         | Specifies the attack type: `regular_key` or `equivalent_key`. |
+| `--rounds <N>`          | Overrides the default number of rounds (e.g., `--rounds 5`). |
+| `--guess_and_determine` | Enables guess-and-determine (only for `PRESENT80`). |
+| `--output <FILENAME>`   | Specifies the output file (default: `output.txt`). |
+| `--print_key`           | Prints the generated forward & backward keys. |
+| `--print_block`         | Prints forward & backward blocks. |
+| `--print_block_car`     | Prints block cardinality. |
+| `--print_bit_addr_info` | Prints bit address information. |
 
 Example Commands
 
 Running an attack on Midori64 (Regular Key Attack)
+
     python3 main.py --cipher Midori64 --attack_type regular_key --rounds 5 --print_key --output midori_results.txt    
 This command analyzes Midori64 using a regular key attack with 5 rounds, prints the key, and saves results in midori_results.txt.
 
