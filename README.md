@@ -1,24 +1,31 @@
 This tool automates the process of analyzing cryptographic ciphers using the Meet-in-the-Middle (MITM) attack. It supports various block ciphers, including CRAFT, Midori64, Midori128, WARP, PRESENT80, and ARADI.
 
 Key features:
+
 ✅ Supports regular key and equivalent key attacks.
 
 ✅ Generates round keys and defines bit relations for supported ciphers
+
 ✅ Allows customization of attack parameters (rounds, printing options, etc.)
+
 ✅ Exports results to a file for detailed analysis
+
 ✅ Implements guess-and-determine (only for PRESENT80)
 
 
 📜 Installation
+
 Ensure you have Python 3.x installed. You can check your Python version using:
 
     python3 --version
     
+ 
  Install Dependencies
 
     pip install -r requirements.txt
     
-Usage
+🚀 Usage
+
 Run the tool using the following command:
     
     python3 main.py --cipher <CIPHER> --attack_type <ATTACK_TYPE> [OPTIONS]
