@@ -53,7 +53,9 @@ Run the tool using the following command:
 | `--print_block_car`     | Prints block cardinality. |
 | `--print_bit_addr_info` | Prints bit address information. |
 
-Example Commands
+
+📌 Example Commands
+
 
 Running an attack on Midori64 (Regular Key Attack)
 
@@ -61,19 +63,26 @@ Running an attack on Midori64 (Regular Key Attack)
 This command analyzes Midori64 using a regular key attack with 5 rounds, prints the key, and saves results in midori_results.txt.
 
 Running an Equivalent Key Attack on CRAFT
+
     python3 main.py --cipher CRAFT --attack_type equivalent_key --print_block --print_block_car
 Runs an equivalent key attack on CRAFT, printing the block structure and cardinality.
 
 Running Guess-and-Determine on PRESENT80
+
     python3 main.py --cipher PRESENT80 --attack_type regular_key --guess_and_determine --print_bit_addr_info
 Performs guess-and-determine analysis on PRESENT80, printing bit address information.
 
 ⚠️ Notes & Limitations
+
 The guess-and-determine technique is only applicable to PRESENT80.
+
 The cipher names are case-insensitive, but must match their official names (Midori64, not MIDORI64).
+
 Equivalent key attacks are not supported for WARP and PRESENT80.
 
+
 📜 License
+
 This project is licensed under the MIT License.
 
 
