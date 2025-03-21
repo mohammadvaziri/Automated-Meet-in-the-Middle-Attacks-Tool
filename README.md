@@ -1,7 +1,7 @@
 This tool automates the process of analyzing cryptographic ciphers using the Meet-in-the-Middle (MITM) attack. It supports various block ciphers, including CRAFT, Midori64, Midori128, WARP, PRESENT80, and ARADI.
 
 Key features:
-✅ Supports regular key and equivalent key attacks
+✅ Supports regular key and equivalent key attacks.\n
 ✅ Generates round keys and defines bit relations for supported ciphers
 ✅ Allows customization of attack parameters (rounds, printing options, etc.)
 ✅ Exports results to a file for detailed analysis
