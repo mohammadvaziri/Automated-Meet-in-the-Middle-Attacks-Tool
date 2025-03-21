@@ -81,8 +81,5 @@ The cipher names are case-insensitive, but must match their official names (Mido
 Equivalent key attacks are not supported for WARP and PRESENT80.
 
 
-📜 License
-
-This project is licensed under the MIT License.
 
 
