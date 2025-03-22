@@ -107,10 +107,10 @@ To describe dependencies for the S-box, two dependency lists should be written:
 ⚠️ **Important:** A bit position **must not** appear in both `lin_dependent_ind` and `non_lin_dependent_ind`.  
 For example, in **CRAFT**:
 
-```python
-lin_dependent_ind = [[], [], [], []]
-non_lin_dependent_ind = [[0, 1, 2, 3], [0, 1, 2, 3], [0, 1, 3], [0, 1, 2, 3]]
-   
+
+    lin_dependent_ind = [[], [], [], []]
+    non_lin_dependent_ind = [[0, 1, 2, 3], [0, 1, 2, 3], [0, 1, 3], [0, 1, 2, 3]]
+       
 ### 4. Describing Forward & Backward Directions 
 
 Define two lists:
