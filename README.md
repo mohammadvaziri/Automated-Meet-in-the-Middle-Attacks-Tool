@@ -43,15 +43,15 @@ Run the tool using the following command:
 
 | Argument                 | Description |
 |-------------------------|-------------|
-| `--cipher`              | Selects the cipher (e.g., `CRAFT`, `Midori64`, `WARP`). |
-| `--attack_type`         | Specifies the attack type: `regular_key` or `equivalent_key`. |
-| `--rounds <N>`          | Overrides the default number of rounds (e.g., `--rounds 5`). |
-| `--guess_and_determine` | Enables guess-and-determine (only for `PRESENT80`). |
-| `--output <FILENAME>`   | Specifies the output file (default: `output.txt`). |
-| `--print_key`           | Prints the generated forward & backward keys. |
-| `--print_block`         | Prints forward & backward blocks. |
-| `--print_block_car`     | Prints block cardinality. |
-| `--print_bit_addr_info` | Prints bit address information. |
+| `--rounds <N>`             | Overrides the default number of rounds (e.g., `--rounds 5`). |
+| `--guess_and_determine`    | Enables guess-and-determine (only for `PRESENT80`). |
+| `--output <FILENAME>`      | Specifies the output file (default: `output.txt`). |
+| `--print_key`              | Prints the generated forward & backward keys. |
+| `--print_block`            | Prints forward & backward blocks. |
+| `--print_block_car`        | Prints block cardinality. |
+| `--print_bit_addr_info`    | Prints bit address information. |
+| `--evaluate_key_diffusion` | Evaluate key bit diffusion (requires a key bit, e.g., 'k_13') |
+| `--navigate_bit_position`  | Navigate bit position progress (requires a bit position, e.g., 3) |
 
 
 📌 Example Commands
@@ -79,6 +79,35 @@ The guess-and-determine technique is only applicable to PRESENT80.
 The cipher names are case-insensitive, but must match their official names (Midori64, not MIDORI64).
 
 Equivalent key attacks are not supported for WARP and PRESENT80.
+
+
+## How to Describe a Cipher to the Tool
+
+To describe a cipher, you need to determine the positions of the bit addresses. As an example, consider the **regular key attack on CRAFT**:
+
+![Diagram Description](craft_regular_key.png)
+
+### 1. Generating Round Keys
+First, the round keys must be generated based on the cipher’s key schedule. Refer to `generate_round_key.py`, where round keys are generated for other ciphers.
+
+### 2. Describing Cipher Components in Bit-Level Representation
+All cipher components—such as permutations and mix columns—must be described at the **bit level**. The Sage Jupyter file `sage_support_material.ipynb` is useful for understanding and visualizing the bit-level representation of different ciphers.
+
+For determining **bit dependencies in S-boxes**, the component functions should be computed using **SageMath**. See the Sage file `sage_support_material.ipynb` for guidance.
+
+To describe dependencies for the S-box, two dependency lists should be written:
+- **`lin_dependent_ind`** → Stores the indices of linearly dependent bits.
+- **`non_lin_dependent_ind`** → Stores the indices of non-linearly dependent bits.
+
+⚠️ **Important:** A bit position **must not** appear in both `lin_dependent_ind` and `non_lin_dependent_ind`.  
+For example, in **CRAFT**:
+
+```python
+lin_dependent_ind = [[], [], [], []]
+non_lin_dependent_ind = [[0, 1, 2, 3], [0, 1, 2, 3], [0, 1, 3], [0, 1, 2, 3]]
+
+
+
 
 
 
