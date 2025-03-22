@@ -88,9 +88,11 @@ To describe a cipher, you need to determine the positions of the bit addresses. 
 ![Diagram Description](craft_regular_key.png)
 
 ### 1. Generating Round Keys
+
 First, the round keys must be generated based on the cipher’s key schedule. Refer to `generate_round_key.py`, where round keys are generated for other ciphers.
 
-### 2. Describing Cipher Components in Bit-Level Representation
+### 2. Describing Cipher Components in Bit-Level Representation  ddd
+
 All cipher components—such as permutations and mix columns—must be described at the **bit level**. The Sage Jupyter file `sage_support_material.ipynb` is useful for understanding and visualizing the bit-level representation of different ciphers.
 
 For determining **bit dependencies in S-boxes**, the component functions should be computed using **SageMath**. See the Sage file `sage_support_material.ipynb` for guidance.
@@ -107,8 +109,57 @@ lin_dependent_ind = [[], [], [], []]
 non_lin_dependent_ind = [[0, 1, 2, 3], [0, 1, 2, 3], [0, 1, 3], [0, 1, 2, 3]]
 
 
+### 3. Defining the Direction Lists (directions)
+
+The tool requires a list of operations for both forward and backward directions. This list should be structured into a directions variable containing two sub-lists: 'fwd' and 'bwd'.
+
+Each sub-list includes a sequence of operations applied at specific bit positions, following the cipher's structure.
+
+Structure of the directions list:
+
+🔹 The first element of each operation list is an integer that specifies how many times the operation is repeated.
+If not provided, the operation runs once by default.
+
+🔹 Each operation consists of:
+
+A label (name) for the operation → Used to maintain symmetry between fwd and bwd.
+The operation type (e.g., key_addition, s_box, mixing, etc.).
+Lists that define dependencies → Used to update the linearly and non-linearly dependent key sets.
+
+📌 Naming Conventions for Operations
+
+Forward (fwd) and Backward (bwd) operations should be symmetric.
+ If an operation does not have a natural counterpart in one direction, prefix its name with '*'.
+ If no action is needed, use '-' as a placeholder.
+     Example: See the regular_key attack for Midori64.
+
+### 4.  Handling Partial State Operations
+
+Some operations affect only a portion of the cipher's state (e.g., XOR in Feistel structures). In such cases:
+
+1) Define a pattern list containing the bit indices.
+2) Use this pattern list before the operation name in directions.
 
 
+### Supported Operations
+
+| Operation      | Required Parameters               | Optional Parameters               | Example                                      | Notes |
+|---------------|----------------------------------|----------------------------------|----------------------------------------------|-------|
+| `key_addition` | Name                             | Pattern list                      | `['a', 'key_addition']`                      | Automatically uses the generated round keys. |
+| `s_box`       | Name, list of dependencies       | Pattern list, permutation list    | `[pattern, 'a', 's_box', s_box_list]`        | - |
+| `mixing`      | Name, list of mixing             | Pattern list, permutation list    | `['a', 'mixing', mix_list, mix_perm_bit]`    | - |
+| `perm`        | Name, list of permutation        | -                                  | `['*', 'perm', perm_bit]`                    | - |
+| `perm_inv`    | Name, list of permutation        | -                                  | `['b', 'perm_inv', perm_bit]`                | Acts as the inverse of permutation. |
+| `xor`         | Name, list of block IDs          | Pattern list                      | `[pattern[1], 'b', 'xor', block_id1]`        | Block ID list contains bit addresses affected by XOR. |
+| `'-'`         | Name                             | -                                  | `['b', '-']`                                 | Indicates no action. |
+
+
+
+Debugging and Validation
+
+1️⃣ Navigate Bit Position Progress
+
+Prints the linearly and non-linearly dependent key bit sets at a specific bit position.
 
 
 
