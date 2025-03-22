@@ -89,12 +89,15 @@ To describe a cipher, you need to determine the positions of the bit addresses. 
 
 ### 1. Generating Round Keys
 
-First, the round keys must be generated based on the cipher’s key schedule. Refer to `generate_round_key.py`, where round keys are generated for other ciphers.
+Each cipher requires round keys based on its key schedule. Refer to generate_round_key.py, which generates round keys for various ciphers.
 
-### 2. Describing Cipher Components in Bit-Level Representation  ddd
+### 2.  Bit-Level Representation
 
 All cipher components—such as permutations and mix columns—must be described at the **bit level**. The Sage Jupyter file `sage_support_material.ipynb` is useful for understanding and visualizing the bit-level representation of different ciphers.
 
+
+### 3. Defining Dependencies for S-boxes
+ 
 For determining **bit dependencies in S-boxes**, the component functions should be computed using **SageMath**. See the Sage file `sage_support_material.ipynb` for guidance.
 
 To describe dependencies for the S-box, two dependency lists should be written:
@@ -107,11 +110,46 @@ For example, in **CRAFT**:
 ```python
 lin_dependent_ind = [[], [], [], []]
 non_lin_dependent_ind = [[0, 1, 2, 3], [0, 1, 2, 3], [0, 1, 3], [0, 1, 2, 3]]
+   
+### 4. Describing Forward & Backward Directions 
+
+Define two lists:
+
+fwd → Forward encryption operations
+bwd → Backward decryption operations
+
+Example for CRAFT (Regular Key Attack):
+
+        directions = [
+        ['fwd',
+            [['*', 'key_addition']], 
+            [n_rounds - 1, ['a', 's_box', s_box_list, perms_box], ['b', 'perm', perm_bit],
+                ['c', 'mixing', mix_list], ['d', 'key_addition']], 
+            [1, ['a', 's_box', s_box_list, perms_box], ['b', 'key_addition']]
+        ],
+        ['bwd',
+            [1, ['b', '-'], ['a', 'key_addition']], 
+            [n_rounds - 1, ['d', 's_box', s_box_list, perms_box],
+                ['c', 'key_addition'], ['b', 'mixing', mix_list], ['a', 'perm_inv', perm_bit]]
+        ]
+        ]
+
+### 5. Supported Operations
 
 
-### 3. Defining the Direction Lists (directions)
+| Operation      | Required Parameters               | Optional Parameters               | Example                                      | Notes |
+|---------------|----------------------------------|----------------------------------|----------------------------------------------|-------|
+| `key_addition` | Name                             | Pattern list                      | `['a', 'key_addition']`                      | Automatically uses the generated round keys. |
+| `s_box`       | Name, list of dependencies       | Pattern list, permutation list    | `[pattern, 'a', 's_box', s_box_list]`        | - |
+| `mixing`      | Name, list of mixing             | Pattern list, permutation list    | `['a', 'mixing', mix_list, mix_perm_bit]`    | - |
+| `perm`        | Name, list of permutation        | -                                  | `['*', 'perm', perm_bit]`                    | - |
+| `perm_inv`    | Name, list of permutation        | -                                  | `['b', 'perm_inv', perm_bit]`                | Acts as the inverse of permutation. |
+| `xor`         | Name, list of block IDs          | Pattern list                      | `[pattern[1], 'b', 'xor', block_id1]`        | Block ID list contains bit addresses affected by XOR. |
+| `'-'`         | Name                             | -                                  | `['b', '-']`                                 | Indicates no action. |
 
-The tool requires a list of operations for both forward and backward directions. This list should be structured into a directions variable containing two sub-lists: 'fwd' and 'bwd'.
+
+
+
 
 Each sub-list includes a sequence of operations applied at specific bit positions, following the cipher's structure.
 
@@ -133,7 +171,7 @@ Forward (fwd) and Backward (bwd) operations should be symmetric.
  If no action is needed, use '-' as a placeholder.
      Example: See the regular_key attack for Midori64.
 
-### 4.  Handling Partial State Operations
+  Handling Partial State Operations
 
 Some operations affect only a portion of the cipher's state (e.g., XOR in Feistel structures). In such cases:
 
@@ -141,25 +179,30 @@ Some operations affect only a portion of the cipher's state (e.g., XOR in Feiste
 2) Use this pattern list before the operation name in directions.
 
 
-### Supported Operations
+Monitoring and Debugging the Cipher Description
 
-| Operation      | Required Parameters               | Optional Parameters               | Example                                      | Notes |
-|---------------|----------------------------------|----------------------------------|----------------------------------------------|-------|
-| `key_addition` | Name                             | Pattern list                      | `['a', 'key_addition']`                      | Automatically uses the generated round keys. |
-| `s_box`       | Name, list of dependencies       | Pattern list, permutation list    | `[pattern, 'a', 's_box', s_box_list]`        | - |
-| `mixing`      | Name, list of mixing             | Pattern list, permutation list    | `['a', 'mixing', mix_list, mix_perm_bit]`    | - |
-| `perm`        | Name, list of permutation        | -                                  | `['*', 'perm', perm_bit]`                    | - |
-| `perm_inv`    | Name, list of permutation        | -                                  | `['b', 'perm_inv', perm_bit]`                | Acts as the inverse of permutation. |
-| `xor`         | Name, list of block IDs          | Pattern list                      | `[pattern[1], 'b', 'xor', block_id1]`        | Block ID list contains bit addresses affected by XOR. |
-| `'-'`         | Name                             | -                                  | `['b', '-']`                                 | Indicates no action. |
-
-
-
-Debugging and Validation
+To validate and debug the cipher’s description, the tool provides two useful arguments:
 
 1️⃣ Navigate Bit Position Progress
 
-Prints the linearly and non-linearly dependent key bit sets at a specific bit position.
+🔹 Prints the linearly and non-linearly dependent key bit sets for a specific bit position.
+🔹 Useful for verifying that operations are correctly defined.
+
+Usage Example:
+
+    python3 main.py --cipher CRAFT --attack_type regular_key --navigate_bit_position 14
+
+
+2️⃣ --evaluate_key_diffusion
+
+🔹  Traces key bit diffusion throughout the cipher’s bit positions.
+🔹  Helps analyze how key bits propagate through operations.
+
+Usage Example:
+
+    python3 main.py --cipher Midori64 --attack_type equivalent_key --evaluate_key_diffusion k_1
+
+
 
 
 
