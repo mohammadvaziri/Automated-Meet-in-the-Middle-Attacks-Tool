@@ -1,4 +1,4 @@
-This tool automates the process of analyzing cryptographic ciphers using the Meet-in-the-Middle (MITM) attack. It supports various block ciphers, including CRAFT, Midori64, Midori128, WARP, PRESENT80, and ARADI.
+This tool automates the process of analyzing cryptographic ciphers using the proposed Meet-in-the-Middle (MITM) attack. The tool calculates time, data, and memory complexities based on the suggested matching points. It supports various block ciphers, including CRAFT, Midori64, Midori128, WARP, PRESENT80, and ARADI.
 
 Key features:
 
@@ -104,7 +104,7 @@ To describe dependencies for the S-box, two dependency lists should be written:
 - **`lin_dependent_ind`** → Stores the indices of linearly dependent bits.
 - **`non_lin_dependent_ind`** → Stores the indices of non-linearly dependent bits.
 
-⚠️ **Important:** A bit position **must not** appear in both `lin_dependent_ind` and `non_lin_dependent_ind`.  
+⚠️ **Important:** A bit position index **must not** appear in both `lin_dependent_ind` and `non_lin_dependent_ind`.  
 For example, in **CRAFT**:
 
 
@@ -176,7 +176,7 @@ Forward (fwd) and Backward (bwd) operations should be symmetric.
 Some operations affect only a portion of the cipher's state (e.g., XOR in Feistel structures). In such cases:
 
 1) Define a pattern list containing the bit indices.
-2) Use this pattern list before the operation name in directions.
+2) Use this pattern list before the operation name in the directions.
 
 
 Monitoring and Debugging the Cipher Description
@@ -201,6 +201,11 @@ Usage Example:
 Usage Example:
 
     python3 main.py --cipher Midori64 --attack_type equivalent_key --evaluate_key_diffusion k_1
+
+## 📜 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
 
 
 
