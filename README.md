@@ -138,14 +138,14 @@ Example for CRAFT (Regular Key Attack):
 
 
 | Operation      | Required Parameters               | Optional Parameters               | Example                                      | Notes |
-|---------------|----------------------------------|----------------------------------|----------------------------------------------|-------|
-| `key_addition` | Name                             | Pattern list                      | `['a', 'key_addition']`                      | Automatically uses the generated round keys. |
-| `s_box`       | Name, list of dependencies       | Pattern list, permutation list    | `[pattern, 'a', 's_box', s_box_list]`        | - |
-| `mixing`      | Name, list of mixing             | Pattern list, permutation list    | `['a', 'mixing', mix_list, mix_perm_bit]`    | - |
-| `perm`        | Name, list of permutation        | -                                  | `['*', 'perm', perm_bit]`                    | - |
-| `perm_inv`    | Name, list of permutation        | -                                  | `['b', 'perm_inv', perm_bit]`                | Acts as the inverse of permutation. |
-| `xor`         | Name, list of block IDs          | Pattern list                      | `[pattern[1], 'b', 'xor', block_id1]`        | Block ID list contains bit addresses affected by XOR. |
-| `'-'`         | Name                             | -                                  | `['b', '-']`                                 | Indicates no action. |
+|---------------|-----------------------------------|-----------------------------------|----------------------------------------------|------------------------------------------------------|
+| `key_addition` | Name                             | Pattern list                      | `['a', 'key_addition']`                      | Automatically uses the generated round keys.         |
+| `s_box`       | Name, list of dependencies        | Pattern list, permutation list    | `[pattern, 'a', 's_box', s_box_list]`        | -                                                    |
+| `mixing`      | Name, list of mixing              | Pattern list, permutation list    | `['a', 'mixing', mix_list, mix_perm_bit]`    | -                                                    |
+| `perm`        | Name, list of permutation         | -                                 | `['*', 'perm', perm_bit]`                    | -                                                    |
+| `perm_inv`    | Name, list of permutation         | -                                 | `['b', 'perm_inv', perm_bit]`                | Acts as the inverse of permutation.                  |
+| `xor`         | Name, list of block IDs           | Pattern list                      | `[pattern[1], 'b', 'xor', block_id1]`        | Block ID list contains bit addresses affected by XOR.|
+| `'-'`         | Name                              | -                                 | `['b', '-']`                                 | Indicates no action.                                 |
 
 
 
@@ -193,7 +193,7 @@ Usage Example:
     python3 main.py --cipher CRAFT --attack_type regular_key --navigate_bit_position 14
 
 
-2️⃣ --evaluate_key_diffusion
+2️⃣ Evaluate Key Diffusion
 
 🔹  Traces key bit diffusion throughout the cipher’s bit positions.
 🔹  Helps analyze how key bits propagate through operations.
