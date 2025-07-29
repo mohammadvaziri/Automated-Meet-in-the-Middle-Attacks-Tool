@@ -6,6 +6,7 @@ import logging
 from find_good_bit_address import FindGoodBitAddress
 from generate_round_key import GenerateRoundKey
 from typing import List, Union
+import time
 
 
 # Setup logging
@@ -14,6 +15,8 @@ logger = logging.getLogger(__name__)
 
 
 def main():
+    start_time = time.time()
+
     """Main function to select and execute the correct cipher analysis."""
     parser = argparse.ArgumentParser(description="Automated Tool for Meet in the Middle Attack")
     parser.add_argument("--cipher", type=str, choices=["CRAFT", "Midori64", "Midori128", "WARP",
@@ -406,6 +409,12 @@ def main():
     if bit_position is not None:
         logger.info(f"Navigating bit position progress for position: {bit_position}")
         f.navigate_bit_position_progress(bit_position)
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    minutes = int(elapsed_time // 60)
+    seconds = int(elapsed_time % 60)
+    print(f"Elapsed time: {minutes} minute(s) and {seconds} second(s)")
 
 
 if __name__ == "__main__":
