@@ -623,7 +623,7 @@ class FindGoodBitAddress:
         self.compute_fwd_bwd_cardinality()
         self.compute_max_fwd_bwd_cardinalities()
         self.compute_print_min_time_memory_data_complexity()
-        print('\n\n\nDone!-------------------\n\n')
+
 
     def print_details(self, output_file="output.txt", print_key=False, print_block=False, print_block_car=False,
                       print_bit_addr_info=False):

@@ -414,7 +414,9 @@ def main():
     elapsed_time = end_time - start_time
     minutes = int(elapsed_time // 60)
     seconds = int(elapsed_time % 60)
-    print(f"Elapsed time: {minutes} minute(s) and {seconds} second(s)")
+    print(f"\n\n\nElapsed time: {minutes} minute(s)( or {seconds} second(s) )")
+
+    print('\nDone!-------------------\n\n')
 
 
 if __name__ == "__main__":
